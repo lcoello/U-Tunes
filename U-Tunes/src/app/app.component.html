@@ -1,0 +1,28 @@
+<nav class="navbar navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">Search Itunes</a>
+</nav>
+<div class="container my-4">
+  <form class="form-inline" [formGroup]="itunesForm">
+    <div class="form-group">
+      <label class="mx-2">Search for favorite music artist! :) </label>
+      <input type="text" class="form-control" formControlName="term" placeholder="..search for this song please!">
+    </div>
+  </form>
+  <p class="lead" *ngIf="loading">LOADING CONTENT<span>.</span><span>.</span><span>.</span></p>
+  <p class="lead" *ngIf="notFound">No results where found</p>
+  <div class="cards" style="display: flex; flex-wrap: wrap">
+    <div class="card" style="width: 18rem; flex-grow: 1; margin: 5px" *ngFor="let item of items">
+        <img class="card-img-top" src={{item.thumbnail}} alt="Card image cap" />
+        <div class="card-body">
+          <h5 class="card-title">{{item.name}}</h5>
+          <a href={{item.viewUrl}} target="_blank" class="btn btn-primary">Go to profile</a>
+        </div>
+        <div class="card-footer">
+          <audio controls>
+            <source src={{item.previewSong}} type="audio/mpeg">
+          </audio>
+        </div>
+      </div>
+  </div>
+</div>
+
